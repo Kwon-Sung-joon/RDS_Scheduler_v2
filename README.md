@@ -3,28 +3,31 @@
 
 # Step1. 
 - set RDS instances tags
+```
           Key : SCHEDULER, Value : ON || OFF -> scheduler tag
           Key : SCH_TIME, Value: WORKING -> check schedluer time tag
+```
 # Step2.
-- SSM Parameter store
+## SSM Parameter store
 
-name : SCHEDULER_SVC
-value : 
+-  SCHEDULER_SVC
+```value
 {
         "ACCOUNT ID" : "OFF",
         "ACCOUNT2 ID"  : "ON"
 }
+```  
+- SCHEDUELR_IAM_ROLE_ARN
 
-name : SCHEDUELR_IAM_ROLE_ARN
-value : 
+```value
 {
         "ACCOUNT ID" : "SCHEDULER_ROLE", <- permission is rds stop/start policy
         "ACCOUNT ID" : "SCHEDULER_ROLE"
  
 }
-
+```
 - SCHEDULER_ROLE's policy
-
+```
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -47,3 +50,4 @@ value :
         }
     ]
 }
+```
