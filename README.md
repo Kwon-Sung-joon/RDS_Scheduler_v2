@@ -1,5 +1,14 @@
 # RDS_Scheduler_v2
 
+# Flow
+
+1. Amazon EventBridge Scheduler invoke's lambda with payload
+2. In Lambda, First check Schduelr ON account with ssm parameter store
+3. get TOKEN with assume role
+4. check rds instance's tags SCHEDULER, SCH_TIME
+5. if all conditions is true, then execute scheduler
+
+
 
 # Step1. 
 - set RDS instances tags
