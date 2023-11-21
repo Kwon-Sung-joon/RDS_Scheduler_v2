@@ -51,3 +51,22 @@
     ]
 }
 ```
+
+# Step3.
+## Create EventBridge Scheduler
+- WORKING_START
+```
+Cron : 0 8 * * ? *
+```
+```
+#payload
+{ "SCH_TIME":"WORKING", "ACTION":"START" }
+```
+- WORKING_STOP
+```
+Cron : 0 18 * * ? *
+```
+```
+#payload
+{ "SCH_TIME":"WORKING", "ACTION":"STOP" }
+```
