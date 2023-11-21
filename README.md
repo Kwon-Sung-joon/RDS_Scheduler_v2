@@ -1,19 +1,49 @@
 # RDS_Scheduler_v2
 
 
-ssm needs
+# Step1. 
+- set RDS instances tags
+          Key : SCHEDULER, Value : ON || OFF -> scheduler tag
+          Key : SCH_TIME, Value: WORKING -> check schedluer time tag
+# Step2.
+- SSM Parameter store
 
-1. SCHEDUELR_IAM_ROLE_ARN
+name : SCHEDULER_SVC
+value : 
 {
-        "ACCOUNT ID" : "ASSUME ROLE ARN",
-        "ACCOUNT ID" : "ASSUME ROLE ARN"
+        "ACCOUNT ID" : "OFF",
+        "ACCOUNT2 ID"  : "ON"
+}
+
+name : SCHEDUELR_IAM_ROLE_ARN
+value : 
+{
+        "ACCOUNT ID" : "SCHEDULER_ROLE", <- permission is rds stop/start policy
+        "ACCOUNT ID" : "SCHEDULER_ROLE"
  
 }
 
+- SCHEDULER_ROLE's policy
 
-2. SCHEDULER_SVC
-
-{
-        "ACCOUNT ID" : "OFF",
-        "ACCOUNT ID"  : "ON"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "rds:StopDBInstance",
+                "rds:StartDBInstance"
+            ],
+            "Resource": "<arn:aws:rds:ap-northeast-2:300846112004:db:<대상DB>"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "rds:Desc*",
+                "rds:List*"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
