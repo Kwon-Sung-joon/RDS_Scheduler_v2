@@ -46,7 +46,7 @@
                 "rds:StopDBInstance",
                 "rds:StartDBInstance"
             ],
-            "Resource": "<arn:aws:rds:ap-northeast-2:300846112004:db:<대상DB>"
+            "Resource": "<arn:aws:rds:ap-northeast-2:<account-id>:db:<db-identifier>"
         },
         {
             "Sid": "VisualEditor1",
